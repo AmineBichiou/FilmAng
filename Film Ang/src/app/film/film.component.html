@@ -1,0 +1,20 @@
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Id</th><th>Nom</th>  <th>Rating</th> <th>Date Création</th><th>Genre</th><th>image</th><th>Supprimer</th><th>Modifier</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let f of Film">
+    <tr >
+    <td>{{f.idFilm}}</td>
+    <td>{{f.nomFilm}}</td>
+    <td>{{f.rateFilm}}</td>
+    <td>{{f.dateCreation | date:'dd/MM/yyyy'}}</td>
+    <td>{{f.genre.nomGenre}}</td>
+    <td><img class="card-img-top img-responsive" src="{{apiurl+'/load/'+f.image.idImage}}" style = "height :50px;width:100px"></td>
+    <td><a *ngIf="authService.isAdmin()"class="btn btn-secondary" (click)="supprimerFilm(f)">Supprimer</a></td>
+    <td><a *ngIf="authService.isAdmin()"class="btn btn-secondary" [routerLink]="['/updateFilm',f.idFilm]">Modifier</a></td>
+    </tr>
+    </tbody>
+    
+    </table>
